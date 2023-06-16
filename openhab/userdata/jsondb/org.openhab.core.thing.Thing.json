@@ -1,0 +1,66 @@
+{
+  "mqtt:broker:5c4f5a4a21": {
+    "class": "org.openhab.core.thing.internal.ThingStorageEntity",
+    "value": {
+      "isBridge": true,
+      "channels": [
+        {
+          "uid": "mqtt:broker:5c4f5a4a21:Temperatur_Sensor_Channel",
+          "id": "Temperatur_Sensor_Channel",
+          "channelTypeUID": "mqtt:publishTrigger",
+          "kind": "TRIGGER",
+          "label": "Temperatur_Sensor_Channel",
+          "description": "",
+          "defaultTags": [],
+          "properties": {},
+          "configuration": {
+            "stateTopic": "homeassistant/sensor/temperatureRoof/state"
+          },
+          "autoUpdatePolicy": "DEFAULT"
+        }
+      ],
+      "label": "MQTT Broker",
+      "configuration": {
+        "birthRetain": true,
+        "certificatepin": true,
+        "clientid": "5709a3d3-9ba2-49f0-bae9-da34709311bf",
+        "enableDiscovery": true,
+        "host": "172.19.208.1",
+        "hostnameValidated": true,
+        "keepAlive": 60,
+        "lwtQos": 0,
+        "lwtRetain": true,
+        "mqttVersion": "V3",
+        "protocol": "TCP",
+        "publickeypin": true,
+        "qos": 0,
+        "reconnectTime": 60000,
+        "secure": false,
+        "shutdownRetain": true
+      },
+      "properties": {},
+      "UID": "mqtt:broker:5c4f5a4a21",
+      "thingTypeUID": "mqtt:broker"
+    }
+  },
+  "mqtt:homeassistant_temperatureRoof:5c4f5a4a21:temperatureRoof": {
+    "class": "org.openhab.core.thing.internal.ThingStorageEntity",
+    "value": {
+      "isBridge": false,
+      "channels": [],
+      "label": "Temperature (Sensor)",
+      "bridgeUID": "mqtt:broker:5c4f5a4a21",
+      "configuration": {
+        "basetopic": "homeassistant",
+        "topics": [
+          "sensor/temperatureRoof"
+        ]
+      },
+      "properties": {
+        "deviceId": "temperatureRoof"
+      },
+      "UID": "mqtt:homeassistant_temperatureRoof:5c4f5a4a21:temperatureRoof",
+      "thingTypeUID": "mqtt:homeassistant_temperatureRoof"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "Julian": {
+    "class": "org.openhab.core.auth.ManagedUser",
+    "value": {
+      "name": "Julian",
+      "passwordHash": "Svr+mV+fWE+UbLYPAX7n5xT8v7w89z/4MI5sRWxAa8iYWNG/maiw3xa2Fq405KD4wZTsFDYtMymiK8ORvzPcRA\u003d\u003d",
+      "passwordSalt": "K2ZCjL0r91OKzjHH2ayjCDI4fBpiCDtw8n4ANHqiPUqdj7s4uTYCKtgoL4N/Z7IaIULT6Ywkm2kN4AGYixpLaQ\u003d\u003d",
+      "roles": [
+        "administrator"
+      ],
+      "sessions": [
+        {
+          "sessionId": "e83bcab2-8797-4dad-b820-89a77e33d400",
+          "refreshToken": "60c3a44fbde140269164a7df94752883",
+          "createdTime": "May 10, 2023, 1:28:00 PM",
+          "lastRefreshTime": "Jun 16, 2023, 11:54:54 AM",
+          "clientId": "http://localhost:8081",
+          "redirectUri": "http://localhost:8081",
+          "scope": "admin",
+          "sessionCookie": true
+        }
+      ],
+      "apiTokens": []
+    }
+  }
+}

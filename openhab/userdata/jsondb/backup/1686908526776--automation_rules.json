@@ -1,0 +1,63 @@
+{
+  "3b240af88b": {
+    "class": "org.openhab.core.automation.dto.RuleDTO",
+    "value": {
+      "triggers": [
+        {
+          "id": "1",
+          "configuration": {
+            "itemName": "MQTT_Broker_Temperatur_Sensor_Channel"
+          },
+          "type": "core.ItemStateChangeTrigger"
+        }
+      ],
+      "conditions": [],
+      "actions": [
+        {
+          "inputs": {},
+          "id": "2",
+          "configuration": {
+            "blockSource": "\u003cxml xmlns\u003d\"https://developers.google.com/blockly/xml\"\u003e\u003cvariables\u003e\u003cvariable id\u003d\"KhVS%{eGFNy.rmCBkCP6\"\u003estate\u003c/variable\u003e\u003c/variables\u003e\u003cblock type\u003d\"variables_set\" id\u003d\"KmB4.D%Z/sW|\u003d$T7PTYY\" x\u003d\"90\" y\u003d\"106\"\u003e\u003cfield name\u003d\"VAR\" id\u003d\"KhVS%{eGFNy.rmCBkCP6\"\u003estate\u003c/field\u003e\u003cvalue name\u003d\"VALUE\"\u003e\u003cblock type\u003d\"oh_getitem_state\" id\u003d\"OvJR,I9tJMJC0z{v{O)5\"\u003e\u003cvalue name\u003d\"itemName\"\u003e\u003cshadow type\u003d\"oh_item\" id\u003d\"MBK9y{%Ym+y-BZJjrh*M\"\u003e\u003cfield name\u003d\"itemName\"\u003eMQTT_Broker_Temperatur_Sensor_Channel\u003c/field\u003e\u003c/shadow\u003e\u003c/value\u003e\u003c/block\u003e\u003c/value\u003e\u003c/block\u003e\u003c/xml\u003e",
+            "script": "var state;\n\n\nstate \u003d items.getItem(\u0027MQTT_Broker_Temperatur_Sensor_Channel\u0027).state;\n",
+            "type": "application/javascript"
+          },
+          "type": "script.ScriptAction"
+        }
+      ],
+      "configuration": {},
+      "configDescriptions": [],
+      "uid": "3b240af88b",
+      "name": "Test",
+      "tags": [],
+      "visibility": "VISIBLE"
+    }
+  },
+  "a53e901a57": {
+    "class": "org.openhab.core.automation.dto.RuleDTO",
+    "value": {
+      "triggers": [],
+      "conditions": [],
+      "actions": [
+        {
+          "inputs": {},
+          "id": "script",
+          "configuration": {
+            "blockSource": "\u003cxml xmlns\u003d\"https://developers.google.com/blockly/xml\"\u003e\u003c/xml\u003e",
+            "script": "",
+            "type": "application/javascript"
+          },
+          "type": "script.ScriptAction"
+        }
+      ],
+      "configuration": {},
+      "configDescriptions": [],
+      "uid": "a53e901a57",
+      "name": "TestScript",
+      "tags": [
+        "Script"
+      ],
+      "visibility": "VISIBLE",
+      "description": ""
+    }
+  }
+}

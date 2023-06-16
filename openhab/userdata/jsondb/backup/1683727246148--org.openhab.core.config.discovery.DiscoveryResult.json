@@ -1,0 +1,43 @@
+{
+  "mqtt:homeassistant_temperatureRoof:5c4f5a4a21:temperatureRoof": {
+    "class": "org.openhab.core.config.discovery.internal.DiscoveryResultImpl",
+    "value": {
+      "bridgeUID": {
+        "segments": [
+          "mqtt",
+          "broker",
+          "5c4f5a4a21"
+        ],
+        "uid": "mqtt:broker:5c4f5a4a21"
+      },
+      "thingUID": {
+        "segments": [
+          "mqtt",
+          "homeassistant_temperatureRoof",
+          "5c4f5a4a21",
+          "temperatureRoof"
+        ],
+        "uid": "mqtt:homeassistant_temperatureRoof:5c4f5a4a21:temperatureRoof"
+      },
+      "thingTypeUID": {
+        "segments": [
+          "mqtt",
+          "homeassistant_temperatureRoof"
+        ],
+        "uid": ""
+      },
+      "properties": {
+        "basetopic": "homeassistant",
+        "deviceId": "temperatureRoof",
+        "topics": [
+          "sensor/temperatureRoof"
+        ]
+      },
+      "representationProperty": "deviceId",
+      "flag": "NEW",
+      "label": "Temperature (Sensor)",
+      "timestamp": 1683727245643,
+      "timeToLive": -1
+    }
+  }
+}

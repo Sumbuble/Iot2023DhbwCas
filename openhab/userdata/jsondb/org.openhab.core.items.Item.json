@@ -1,0 +1,15 @@
+{
+  "MQTT_Broker_Temperatur_Sensor_Channel": {
+    "class": "org.openhab.core.items.ManagedItemProvider$PersistedItem",
+    "value": {
+      "groupNames": [],
+      "itemType": "String",
+      "tags": [
+        "Point",
+        "Temperature"
+      ],
+      "label": "Temperatur_Sensor_Channel",
+      "category": "temperature"
+    }
+  }
+}

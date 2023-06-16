@@ -1,0 +1,51 @@
+{
+  "overview": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "overview",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jun 16, 2023, 9:27:38 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Overview"
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-label-cell",
+                        "config": {
+                          "expandable": false,
+                          "item": "MQTT_Broker_Temperatur_Sensor_Channel",
+                          "stateAsHeader": true,
+                          "title": "Temperatur_Sensor_Channel"
+                        }
+                      },
+                      {
+                        "component": "oh-label-cell",
+                        "config": {}
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

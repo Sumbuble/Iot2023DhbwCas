@@ -1,0 +1,22 @@
+{
+  "MQTT_Broker_Temperatur_Sensor_Channel -\u003e mqtt:broker:5c4f5a4a21:Temperatur_Sensor_Channel": {
+    "class": "org.openhab.core.thing.link.ItemChannelLink",
+    "value": {
+      "channelUID": {
+        "segments": [
+          "mqtt",
+          "broker",
+          "5c4f5a4a21",
+          "Temperatur_Sensor_Channel"
+        ],
+        "uid": "mqtt:broker:5c4f5a4a21:Temperatur_Sensor_Channel"
+      },
+      "configuration": {
+        "properties": {
+          "profile": "system:trigger-event-string"
+        }
+      },
+      "itemName": "MQTT_Broker_Temperatur_Sensor_Channel"
+    }
+  }
+}
