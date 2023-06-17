@@ -17,6 +17,7 @@ var server = http.createServer(function (req, res) {
     if (req.url == '/weather') { //check the URL of the current request
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.write(JSON.stringify({highest_temp_c: 32}));
+        //TODO: https://www.weatherapi.com/docs/
         res.end();  
 }
 });
