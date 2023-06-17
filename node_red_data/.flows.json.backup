@@ -18,7 +18,7 @@
         "id": "321f928775cf1716",
         "type": "tab",
         "label": "Flow 1",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -28,6 +28,13 @@
         "disabled": true,
         "info": "",
         "env": []
+    },
+    {
+        "id": "1c9ced27e0130938",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
     },
     {
         "id": "1dcb9f56.0c98f1",
@@ -53,6 +60,136 @@
                 "wires": [
                     {
                         "id": "c015a8c4.074c68",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "6173295780b29a23",
+        "type": "subflow",
+        "name": "Subflow 3",
+        "info": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "396b8245abedabff"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 800,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "56834137224ba73a",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "9da20f0f52dd0817",
+        "type": "subflow",
+        "name": "Subflow 2",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "816ae1278f1ddce7"
+                    },
+                    {
+                        "id": "be7b01ad55c27c0b"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 680,
+                "y": 360,
+                "wires": [
+                    {
+                        "id": "ec038e5689734dde",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "f2b1b0db2f4e9747",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "5473b628ff9d67d5"
+                    },
+                    {
+                        "id": "5a07a04c83b6e547"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 640,
+                "y": 360,
+                "wires": [
+                    {
+                        "id": "e91a62428e19f7f8",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "837881da7059a570",
+        "type": "subflow",
+        "name": "sendMessage (3)",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 360,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "583848be2c824947"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1140,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "7eb23bbb4be3a230",
                         "port": 0
                     }
                 ]
@@ -108,7 +245,7 @@
         "id": "4ad4a3e108102efa",
         "type": "mqtt-broker",
         "name": "",
-        "broker": "141.72.131.169",
+        "broker": "mq.jreichwald.de",
         "port": "1883",
         "clientid": "",
         "autoConnect": true,
@@ -155,6 +292,33 @@
         "useselfsignedcertificate": false,
         "sslterminated": false,
         "verboselogging": false
+    },
+    {
+        "id": "6c04b3dee1936a8d",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mq.jreichwald.de",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     },
     {
         "id": "c015a8c4.074c68",
@@ -255,6 +419,459 @@
         ]
     },
     {
+        "id": "396b8245abedabff",
+        "type": "http request",
+        "z": "6173295780b29a23",
+        "name": "Nächste Restmüll Abholung",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://141.72.131.169:5001/restmuell/collection",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "c020ad7110858e91"
+            ]
+        ]
+    },
+    {
+        "id": "c020ad7110858e91",
+        "type": "change",
+        "z": "6173295780b29a23",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "DayUntilCollection",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "56834137224ba73a"
+            ]
+        ]
+    },
+    {
+        "id": "56834137224ba73a",
+        "type": "function",
+        "z": "6173295780b29a23",
+        "name": "function 5",
+        "func": "var newMsg;\nif (msg.payload.dayUntil <= 1) {\n    newMsg = {\n        payload: \"Der Müll wird morgen geleert.\"\n    }\n    return newMsg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "816ae1278f1ddce7",
+        "type": "http request",
+        "z": "9da20f0f52dd0817",
+        "name": "Nächste Restmüll Abholung",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://141.72.131.169:5001/restmuell/collection",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "0b7f2aebc60b9f3d"
+            ]
+        ]
+    },
+    {
+        "id": "be7b01ad55c27c0b",
+        "type": "change",
+        "z": "9da20f0f52dd0817",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Fuellstand",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "7d46fa98539ce569"
+            ]
+        ]
+    },
+    {
+        "id": "0b7f2aebc60b9f3d",
+        "type": "change",
+        "z": "9da20f0f52dd0817",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "DayUntilCollection",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "7d46fa98539ce569"
+            ]
+        ]
+    },
+    {
+        "id": "7d46fa98539ce569",
+        "type": "join",
+        "z": "9da20f0f52dd0817",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "ec038e5689734dde"
+            ]
+        ]
+    },
+    {
+        "id": "ec038e5689734dde",
+        "type": "function",
+        "z": "9da20f0f52dd0817",
+        "name": "function 4",
+        "func": "var newMsg;\nif (msg.payload.Fuellstand < 70 && msg.payload.DayUntilCollection.dayUntil <= 1) {\n    newMsg = {\n        payload: \"Dein Mülleimer ist zu \" +\n            msg.payload.Fuellstand +\n            \"% voll. In \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen kommt die Müllabfuhr. Falls du noch Müll hast, kannst du diesen noch in die Tonne werfen.\"\n    }\n    return newMsg\n}\n\nif (msg.payload.Fuellstand > 60 && msg.payload.DayUntilCollection.dayUntil <= 7)\n{\n    newMsg = { payload: \"Dein Mülleimer ist \" + \n                msg.payload.Fuellstand + \n                \"% voll. In \" + \n                msg.payload.DayUntilCollection.dayUntil +\n                \" Tagen kommt die Müllabfuhr.\" }\n                return newMsg\n}\n\nif (msg.payload.Fuellstand > 60 && msg.payload.DayUntilCollection.dayUntil >= 8) {\n    newMsg = {\n        payload: \"Dein Mülleimer ist bereits zu \" +\n            msg.payload.Fuellstand +\n            \"% voll. Die Müllabfuhr kommt erst in \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen. Bei diesem Verbrauch wird die Mülltonne vor der Abholung bereits voll sein.\"\n    }\n    return newMsg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5473b628ff9d67d5",
+        "type": "http request",
+        "z": "f2b1b0db2f4e9747",
+        "name": "Nächste Restmüll Abholung",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://141.72.131.169:5001/restmuell/collection",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "92c22c65ad35d565"
+            ]
+        ]
+    },
+    {
+        "id": "92c22c65ad35d565",
+        "type": "change",
+        "z": "f2b1b0db2f4e9747",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "DayUntilCollection",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 140,
+        "wires": [
+            [
+                "7c7d236267a0d71d"
+            ]
+        ]
+    },
+    {
+        "id": "7c7d236267a0d71d",
+        "type": "join",
+        "z": "f2b1b0db2f4e9747",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "e91a62428e19f7f8",
+                "af2fce6f44922c5b"
+            ]
+        ]
+    },
+    {
+        "id": "ff60faf631bcd443",
+        "type": "change",
+        "z": "f2b1b0db2f4e9747",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "weather",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "7c7d236267a0d71d"
+            ]
+        ]
+    },
+    {
+        "id": "5a07a04c83b6e547",
+        "type": "http request",
+        "z": "f2b1b0db2f4e9747",
+        "name": "Wetterdaten",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://141.72.131.169:5001/weather",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "ff60faf631bcd443"
+            ]
+        ]
+    },
+    {
+        "id": "e91a62428e19f7f8",
+        "type": "function",
+        "z": "f2b1b0db2f4e9747",
+        "name": "function 3",
+        "func": "var newMsg;\nif (msg.payload.weather > 30 && msg.payload.DayUntilCollection.dayUntil <= 5 && msg.payload.Fuellstand > 40) \n{\n    newMsg = {\n        payload: \"Die Temperatur beträgt heute \" +\n            msg.payload.weather +\n            \" und der Mülleimer ist zu \" + msg.payload.Fuellstand +\n            \"% voll. In \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen kommt die Müllabfuhr. Es ist zu empfehlen die Mülltonne, aufgrund der Hitze, das nächste Mal abholen zu lassen.\"\n    }\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af2fce6f44922c5b",
+        "type": "debug",
+        "z": "f2b1b0db2f4e9747",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7eb23bbb4be3a230",
+        "type": "telegram sender",
+        "z": "837881da7059a570",
+        "name": "",
+        "bot": "b5df0b880d6938d6",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf163fae11bc7ea5",
+        "type": "function",
+        "z": "837881da7059a570",
+        "name": "Nachricht erstellen",
+        "func": "var content = msg.message;\n\nmsg.payload = {};\nmsg.payload.chatId = msg.chatId;\nmsg.payload.options = {\n    parse_mode : \"Markdown\"\n};\nmsg.payload.content = content.toString();\nmsg.payload.type = 'message';\n\nreturn [msg];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 280,
+        "wires": [
+            [
+                "7eb23bbb4be3a230"
+            ]
+        ]
+    },
+    {
+        "id": "55f78347ce91f2cf",
+        "type": "comment",
+        "z": "837881da7059a570",
+        "name": "Nachricht erst l schen, dann neu erstellen (wird sie nur geupdated, wird der Zeitstempel nicht aktualisiert und identische Nachrichten k nnen nicht versendet werden)",
+        "info": "",
+        "x": 650,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3657b369908eeee3",
+        "type": "comment",
+        "z": "837881da7059a570",
+        "name": "msg.chatId = Propertyname aus dem globalen Kontext (notificationReceiver.peripherals)",
+        "info": "",
+        "x": 420,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "36faaa20c4abc22a",
+        "type": "comment",
+        "z": "837881da7059a570",
+        "name": "msg.sentMessageId = Nachrichten-ID der letzten (zugeh rigen) Nachricht, die ersetzt werden soll",
+        "info": "",
+        "x": 450,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4a004cc1dab5ba1f",
+        "type": "comment",
+        "z": "837881da7059a570",
+        "name": "msg.message = Text-Nachricht, die gesendet werden soll, Markdown m glich",
+        "info": "",
+        "x": 390,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "583848be2c824947",
+        "type": "switch",
+        "z": "837881da7059a570",
+        "name": "ChatId gesetzt?",
+        "property": "chatId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 280,
+        "wires": [
+            [
+                "bf163fae11bc7ea5"
+            ]
+        ]
+    },
+    {
         "id": "cc2ae5ba73a6ebd7",
         "type": "mqtt in",
         "z": "321f928775cf1716",
@@ -268,7 +885,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 140,
-        "y": 160,
+        "y": 100,
         "wires": [
             [
                 "2fa3a9eab81d48d3",
@@ -291,7 +908,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 940,
-        "y": 160,
+        "y": 100,
         "wires": []
     },
     {
@@ -302,7 +919,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "body",
-        "url": "http://141.72.131.169:5000/restmuell/collection",
+        "url": "http://141.72.131.169:5001/restmuell/collection",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -311,7 +928,7 @@
         "senderr": false,
         "headers": [],
         "x": 500,
-        "y": 200,
+        "y": 160,
         "wires": [
             [
                 "7f74f9b05ca97f90",
@@ -324,7 +941,7 @@
         "type": "debug",
         "z": "321f928775cf1716",
         "name": "debug 2",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -458,7 +1075,7 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload.DayUntilCollection.dayUntil",
+        "complete": "payload",
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
@@ -498,7 +1115,7 @@
         "type": "function",
         "z": "321f928775cf1716",
         "name": "function 1",
-        "func": "var newMsg;\nif (msg.payload.Fuellstand > 60 && msg.payload.DayUntilCollection.dayUntil <= 3)\n{\n    newMsg = { payload: \"Dein Mülleimer ist \" + \n                msg.payload.Fuellstand + \n                \"% voll. In \" + \n                msg.payload.DayUntilCollection.dayUntil +\n                \" Tagen kommt die Müllabfuhr.\" }\n}\nreturn newMsg;",
+        "func": "var newMsg;\nif (msg.payload.Fuellstand > 60 && msg.payload.DayUntilCollection.daysUntil <= 11)\n{\n    newMsg = { payload: \"Dein Mülleimer ist \" + \n                msg.payload.Fuellstand + \n                \"% voll. In \" + \n                msg.payload.DayUntilCollection.daysUntil +\n                \" Tagen kommt die Müllabfuhr.\" }\n}\nreturn newMsg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -556,5 +1173,697 @@
         "x": 940,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "0d65cafbf4d80bcc",
+        "type": "mqtt in",
+        "z": "1c9ced27e0130938",
+        "name": "Restmülltonne Füllstand",
+        "topic": "restmuell/fuellstand",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6c04b3dee1936a8d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "f8b150e195ae3bd6",
+                "3c2ef9912368e55d",
+                "e09c0135bf337609",
+                "226c86ee7e2d1292"
+            ]
+        ]
+    },
+    {
+        "id": "f8b150e195ae3bd6",
+        "type": "debug",
+        "z": "1c9ced27e0130938",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "3c2ef9912368e55d",
+        "type": "http request",
+        "z": "1c9ced27e0130938",
+        "name": "Nächste Restmüll Abholung",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://141.72.131.169:5001/restmuell/collection",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 480,
+        "y": 720,
+        "wires": [
+            [
+                "b2d61483c3b2262d",
+                "0f9cc7f4c0eab211"
+            ]
+        ]
+    },
+    {
+        "id": "b2d61483c3b2262d",
+        "type": "debug",
+        "z": "1c9ced27e0130938",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "989a256ba9cdd5e9",
+        "type": "mqtt in",
+        "z": "1c9ced27e0130938",
+        "name": "Papiertonne Füllstand",
+        "topic": "papiertonne/fuellstand",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6c04b3dee1936a8d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "171ff7d499780519",
+                "e12a5273b0d1816b"
+            ]
+        ]
+    },
+    {
+        "id": "6bd3d6515f6f1364",
+        "type": "mqtt in",
+        "z": "1c9ced27e0130938",
+        "name": "Biotonne Füllstand",
+        "topic": "biotonne/fuellstand",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6c04b3dee1936a8d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "a046590cbc10b2f1",
+                "d051895593ed0f55",
+                "e12a5273b0d1816b"
+            ]
+        ]
+    },
+    {
+        "id": "fc4ae7c1168f2c35",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "msg",
+                "to": "1010947873",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 1180,
+        "wires": [
+            [
+                "c16a66932589bf54"
+            ]
+        ]
+    },
+    {
+        "id": "c16a66932589bf54",
+        "type": "subflow:837881da7059a570",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "x": 860,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "296e67179a952a04",
+        "type": "join",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 770,
+        "y": 860,
+        "wires": [
+            [
+                "d48c3ac47fb3d8be",
+                "720fbcaba877b90e"
+            ]
+        ]
+    },
+    {
+        "id": "d48c3ac47fb3d8be",
+        "type": "debug",
+        "z": "1c9ced27e0130938",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "0f9cc7f4c0eab211",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "DayUntilCollection",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 780,
+        "wires": [
+            [
+                "296e67179a952a04",
+                "fd513e4f5fd1bd98"
+            ]
+        ]
+    },
+    {
+        "id": "720fbcaba877b90e",
+        "type": "function",
+        "z": "1c9ced27e0130938",
+        "name": "function 1",
+        "func": "var newMsg;\nif (msg.payload.Fuellstand < 70 && msg.payload.DayUntilCollection.dayUntil <= 1) {\n    newMsg = {\n        payload: \"Dein Mülleimer ist zu \" +\n            msg.payload.Fuellstand +\n            \"% voll. In \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen kommt die Müllabfuhr. Falls du noch Müll hast, kannst du diesen noch in die Tonne werfen.\"\n    }\n    return newMsg\n}\n\nif (msg.payload.Fuellstand > 60 && msg.payload.DayUntilCollection.dayUntil <= 7)\n{\n    newMsg = { payload: \"Dein Mülleimer ist \" + \n                msg.payload.Fuellstand + \n                \"% voll. In \" + \n                msg.payload.DayUntilCollection.dayUntil +\n                \" Tagen kommt die Müllabfuhr.\" }\n                return newMsg\n}\n\nif (msg.payload.Fuellstand > 60 && msg.payload.DayUntilCollection.dayUntil >= 8) {\n    newMsg = {\n        payload: \"Dein Mülleimer ist bereits zu \" +\n            msg.payload.Fuellstand +\n            \"% voll. Die Müllabfuhr kommt erst in \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen. Bei diesem Verbrauch wird die Mülltonne vor der Abholung bereits voll sein.\"\n    }\n    return newMsg\n}\n\nif ((msg.payload.Fuellstand / msg.payload.DayUntilCollection.dayUntil) >=9) {\n    newMsg = {\n        payload: \"Dein Mülleimer ist \" +\n            msg.payload.Fuellstand +\n            \"% voll. In \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen kommt die Müllabfuhr.\"\n    }\n    return newMsg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1000,
+        "wires": [
+            [
+                "9483eeb80558dabd"
+            ]
+        ]
+    },
+    {
+        "id": "e09c0135bf337609",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Fuellstand",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 800,
+        "wires": [
+            [
+                "296e67179a952a04"
+            ]
+        ]
+    },
+    {
+        "id": "9483eeb80558dabd",
+        "type": "debug",
+        "z": "1c9ced27e0130938",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "226c86ee7e2d1292",
+        "type": "http request",
+        "z": "1c9ced27e0130938",
+        "name": "Wetterdaten",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://141.72.131.169:5001/weather",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 130,
+        "y": 840,
+        "wires": [
+            [
+                "bb1354a40b091174"
+            ]
+        ]
+    },
+    {
+        "id": "55f755b6def854ce",
+        "type": "function",
+        "z": "1c9ced27e0130938",
+        "name": "function 2",
+        "func": "var newMsg;\nif (msg.payload.weather > 30 && msg.payload.DayUntilCollection.dayUntil <= 5 && msg.payload.Fuellstand > 40) \n{\n    newMsg = {\n        payload: \"Die Temperatur beträgt heute \" +\n            msg.payload.weather +\n            \" und der Mülleimer ist zu \" + msg.payload.Fuellstand +\n            \"% voll. In \" +\n            msg.payload.DayUntilCollection.dayUntil +\n            \" Tagen kommt die Müllabfuhr. Es ist zu empfehlen die Mülltonne, aufgrund der Hitze, das nächste Mal abholen zu lassen.\"\n    }\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd513e4f5fd1bd98",
+        "type": "join",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 470,
+        "y": 900,
+        "wires": [
+            [
+                "55f755b6def854ce"
+            ]
+        ]
+    },
+    {
+        "id": "bb1354a40b091174",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "weather",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 900,
+        "wires": [
+            [
+                "fd513e4f5fd1bd98"
+            ]
+        ]
+    },
+    {
+        "id": "f5f0a77eddf7a7bc",
+        "type": "subflow:f2b1b0db2f4e9747",
+        "z": "1c9ced27e0130938",
+        "name": "Wetter und Tage",
+        "x": 440,
+        "y": 60,
+        "wires": [
+            [
+                "e365e643891494aa"
+            ]
+        ]
+    },
+    {
+        "id": "540dceb9314fe97f",
+        "type": "subflow:9da20f0f52dd0817",
+        "z": "1c9ced27e0130938",
+        "name": "Füllstand und Tage",
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "e365e643891494aa"
+            ]
+        ]
+    },
+    {
+        "id": "b23537a2a971cd32",
+        "type": "mqtt in",
+        "z": "1c9ced27e0130938",
+        "name": "Restmülltonne Füllstand",
+        "topic": "restmuell/fuellstand",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6c04b3dee1936a8d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "f5f0a77eddf7a7bc",
+                "540dceb9314fe97f",
+                "e12a5273b0d1816b"
+            ]
+        ]
+    },
+    {
+        "id": "e365e643891494aa",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "msg",
+                "to": "1010947873",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 80,
+        "wires": [
+            [
+                "2688700c0a43ea01"
+            ]
+        ]
+    },
+    {
+        "id": "2688700c0a43ea01",
+        "type": "subflow:837881da7059a570",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "x": 950,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "171ff7d499780519",
+        "type": "subflow:9da20f0f52dd0817",
+        "z": "1c9ced27e0130938",
+        "name": "Füllstand und Tage",
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "ef4c63fd723910da"
+            ]
+        ]
+    },
+    {
+        "id": "ef4c63fd723910da",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "msg",
+                "to": "1010947873",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [
+                "07fe095cfe97a0b7"
+            ]
+        ]
+    },
+    {
+        "id": "07fe095cfe97a0b7",
+        "type": "subflow:837881da7059a570",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "x": 950,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a046590cbc10b2f1",
+        "type": "subflow:f2b1b0db2f4e9747",
+        "z": "1c9ced27e0130938",
+        "name": "Wetter und Tage",
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "a2f244f646510aef"
+            ]
+        ]
+    },
+    {
+        "id": "d051895593ed0f55",
+        "type": "subflow:9da20f0f52dd0817",
+        "z": "1c9ced27e0130938",
+        "name": "Füllstand und Tage",
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "a2f244f646510aef"
+            ]
+        ]
+    },
+    {
+        "id": "a2f244f646510aef",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "msg",
+                "to": "1010947873",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 280,
+        "wires": [
+            [
+                "d58b0a194946129c"
+            ]
+        ]
+    },
+    {
+        "id": "d58b0a194946129c",
+        "type": "subflow:837881da7059a570",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "x": 950,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e12a5273b0d1816b",
+        "type": "subflow:6173295780b29a23",
+        "z": "1c9ced27e0130938",
+        "name": "Erinnerung",
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "cd8d35d59debb331"
+            ]
+        ]
+    },
+    {
+        "id": "cd8d35d59debb331",
+        "type": "change",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "msg",
+                "to": "1010947873",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 400,
+        "wires": [
+            [
+                "9504ac2fa107c2c1"
+            ]
+        ]
+    },
+    {
+        "id": "9504ac2fa107c2c1",
+        "type": "subflow:837881da7059a570",
+        "z": "1c9ced27e0130938",
+        "name": "",
+        "x": 910,
+        "y": 400,
+        "wires": [
+            []
+        ]
     }
 ]
